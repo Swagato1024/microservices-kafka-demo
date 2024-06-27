@@ -1,4 +1,4 @@
-package com.xyz.base_domains.dto;
+package com.xyz.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

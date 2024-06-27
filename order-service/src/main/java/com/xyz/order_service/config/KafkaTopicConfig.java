@@ -1,6 +1,6 @@
 package com.xyz.order_service.config;
 
-import com.xyz.base_domains.dto.OrderEvent;
+import com.xyz.domain.dto.OrderEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,6 @@ public class KafkaTopicConfig {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class); // If using JSON serialization
-
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

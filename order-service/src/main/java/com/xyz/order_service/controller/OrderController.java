@@ -1,7 +1,7 @@
 package com.xyz.order_service.controller;
 
-import com.xyz.base_domains.dto.Order;
-import com.xyz.base_domains.dto.OrderEvent;
+import com.xyz.domain.dto.Order;
+import com.xyz.domain.dto.OrderEvent;
 import com.xyz.order_service.kafka.OrderProducer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,13 +13,13 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 public class OrderController {
-    private OrderProducer orderProducer;
+    private final OrderProducer orderProducer;
 
     public OrderController(OrderProducer orderProducer) {
         this.orderProducer = orderProducer;
     }
 
-    @PostMapping("/orders")
+    @PostMapping("/order")
     public String placeOrder(@RequestBody Order order) {
         System.out.println("----------------> Request Received <---------------");
         order.setOrderId(UUID.randomUUID().toString());
@@ -29,7 +29,7 @@ public class OrderController {
         orderEvent.setMessage("Order status is pending");
         orderEvent.setOrder(order);
 
-        orderProducer.sendOrderEvent(orderEvent);
+        orderProducer.publishOrderEvent(orderEvent);
         return "Order placed successfully";
     }
 }

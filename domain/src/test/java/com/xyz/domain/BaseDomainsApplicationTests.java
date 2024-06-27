@@ -1,4 +1,4 @@
-package com.xyz.base_domains;
+package com.xyz.domain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
