@@ -11,13 +11,7 @@ public class KafkaConsumerService {
     private static final Logger logger = LoggerFactory.getLogger(KafkaConsumerService.class);
 
     @KafkaListener(topics = "order_topic", groupId = "email-sender", containerFactory = "kafkaListenerContainerFactory")
-    public void listen1(OrderEvent event) {
+    public void listen(OrderEvent event) {
         logger.info("Received event in email sender group {}", event);
-    }
-
-
-    @KafkaListener(topics = "order_topic",  groupId = "sms-sender", containerFactory = "kafkaListenerContainerFactory")
-    public void listen2(OrderEvent event) {
-        logger.info("Received event in sms sender group {}", event);
     }
 }
